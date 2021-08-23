@@ -11,3 +11,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+:root {
+  --ashy-background-color: #121212;
+  --form-container-color: #272727;
+}
