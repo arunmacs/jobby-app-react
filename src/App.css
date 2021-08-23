@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: 'Roboto';
+  margin: 0px;
 }
 
 body {
@@ -13,6 +14,11 @@ body {
 }
 
 :root {
-  --ashy-background-color: #121212;
-  --form-container-color: #272727;
+  --dark-ashy-background-color: #121212;
+  --light-ashy-container-color: #272727;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
 }

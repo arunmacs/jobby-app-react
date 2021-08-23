@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 import Cookie from 'js-cookie'
 import './index.css'
 
@@ -57,52 +58,59 @@ class LoginForm extends Component {
     this.setState({passwordInput: event.target.value, showErrorMsg: false})
   }
 
-  render() {
+  renderForm = () => {
     const {userNameInput, passwordInput, showErrorMsg, errorMsg} = this.state
 
     return (
-      <div className="main-container">
-        <div className="login-form-container">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-            alt="website-logo"
-            className="form-website-logo"
-          />
-          <form className="form-container" onSubmit={this.submitForm}>
-            <div className="input-container">
-              <label htmlFor="userName-input" className="input-label">
-                USERNAME
-              </label>
-              <input
-                id="userName-input"
-                type="text"
-                className="input"
-                onChange={this.handleUserNameInput}
-                value={userNameInput}
-                placeholder="Username"
-              />
-            </div>
-            <div className="input-container">
-              <label htmlFor="userPassword-input" className="input-label">
-                PASSWORD
-              </label>
-              <input
-                id="userPassword-input"
-                type="password"
-                className="input"
-                onChange={this.handleUserPasswordInput}
-                value={passwordInput}
-                placeholder="Password"
-              />
-            </div>
-            <button type="submit" className="submit-btn">
-              Login
-            </button>
-            <p className="error-msg">{showErrorMsg && errorMsg}</p>
-          </form>
-        </div>
+      <div className="login-form-container">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+          alt="website-logo"
+          className="form-website-logo"
+        />
+        <form className="form-container" onSubmit={this.submitForm}>
+          <div className="input-container">
+            <label htmlFor="userName-input" className="input-label">
+              USERNAME
+            </label>
+            <input
+              id="userName-input"
+              type="text"
+              className="input"
+              onChange={this.handleUserNameInput}
+              value={userNameInput}
+              placeholder="Username"
+            />
+          </div>
+          <div className="input-container">
+            <label htmlFor="userPassword-input" className="input-label">
+              PASSWORD
+            </label>
+            <input
+              id="userPassword-input"
+              type="password"
+              className="input"
+              onChange={this.handleUserPasswordInput}
+              value={passwordInput}
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" className="submit-btn">
+            Login
+          </button>
+          <p className="error-msg">{showErrorMsg && errorMsg}</p>
+        </form>
       </div>
     )
+  }
+
+  render() {
+    const token = Cookie.get('jwt_token')
+
+    if (token) {
+      return <Redirect to="/" />
+    }
+    return <div className="main-container">{this.renderForm()}</div>
   }
 }
 

@@ -1,5 +1,5 @@
 .main-container {
-  background-color: var(--ashy-background-color);
+  background-color: var(--dark-ashy-background-color);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
 }
 
 .login-form-container {
-  background-color: var(--form-container-color);
+  background-color: var(--light-ashy-container-color);
   width: 90%;
   min-height: 400px;
   border-radius: 8px;

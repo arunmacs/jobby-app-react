@@ -1,0 +1,15 @@
+.jobs-container {
+  background-color: var(--dark-ashy-background-color);
+  height: 100vh;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  /* .home-container {
+    background-image: url('https://assets.ccbp.in/frontend/react-js/home-lg-bg.png');
+    background-size: cover;
+    height: 100vh;
+  } */
+}
