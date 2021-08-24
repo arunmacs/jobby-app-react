@@ -5,8 +5,8 @@ import './index.css'
 
 class LoginForm extends Component {
   state = {
-    userNameInput: '',
-    passwordInput: '',
+    userName: '',
+    password: '',
     showErrorMsg: false,
     errorMsg: '',
   }
@@ -18,7 +18,7 @@ class LoginForm extends Component {
       expires: 30,
       path: '/',
     })
-    this.setState({userNameInput: '', passwordInput: '', showErrorMsg: false})
+    this.setState({userName: '', password: '', showErrorMsg: false})
     history.replace('/')
   }
 
@@ -28,8 +28,8 @@ class LoginForm extends Component {
 
   submitForm = async event => {
     event.preventDefault()
-    const {userNameInput, passwordInput} = this.state
-    const userCreds = {userNameInput, passwordInput}
+    const {userName, password} = this.state
+    const userCreds = {userName, password}
 
     const loginUrl = 'https://apis.ccbp.in/login'
     const options = {
@@ -51,15 +51,15 @@ class LoginForm extends Component {
   }
 
   handleUserNameInput = event => {
-    this.setState({userNameInput: event.target.value, showErrorMsg: false})
+    this.setState({userName: event.target.value, showErrorMsg: false})
   }
 
   handleUserPasswordInput = event => {
-    this.setState({passwordInput: event.target.value, showErrorMsg: false})
+    this.setState({password: event.target.value, showErrorMsg: false})
   }
 
   renderForm = () => {
-    const {userNameInput, passwordInput, showErrorMsg, errorMsg} = this.state
+    const {userName, password, showErrorMsg, errorMsg} = this.state
 
     return (
       <div className="login-form-container">
@@ -78,7 +78,7 @@ class LoginForm extends Component {
               type="text"
               className="input"
               onChange={this.handleUserNameInput}
-              value={userNameInput}
+              value={userName}
               placeholder="Username"
             />
           </div>
@@ -91,7 +91,7 @@ class LoginForm extends Component {
               type="password"
               className="input"
               onChange={this.handleUserPasswordInput}
-              value={passwordInput}
+              value={password}
               placeholder="Password"
             />
           </div>
@@ -107,9 +107,9 @@ class LoginForm extends Component {
   render() {
     const token = Cookie.get('jwt_token')
 
-    if (token) {
-      return <Redirect to="/" />
-    }
+    // if (token) {
+    //   return <Redirect to="/" />
+    // }
     return <div className="main-container">{this.renderForm()}</div>
   }
 }

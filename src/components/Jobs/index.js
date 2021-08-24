@@ -6,9 +6,7 @@ const Jobs = () => (
   <>
     <Navbar />
     <div className="jobs-container">
-      <div className="title-container">
-        <h1>Jobs Page</h1>
-      </div>
+      <h1>Jobs Page</h1>
     </div>
   </>
 )
