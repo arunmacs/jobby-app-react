@@ -28,10 +28,14 @@
     align-items: center;
     height: 45px;
     width: 450px;
-    margin: 20px 0px;
+    margin: 5px 0px;
     padding: 0px;
     border: 2px solid #64748a;
     border-radius: 4px;
+  }
+
+  .jobs-list {
+    margin: 10px 0px 0px 10px;
   }
 }
 

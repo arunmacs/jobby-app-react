@@ -2,7 +2,7 @@ import {Component} from 'react'
 import './index.css'
 
 class ProfileCard extends Component {
-  state = []
+  state = {}
 
   render() {
     console.log()

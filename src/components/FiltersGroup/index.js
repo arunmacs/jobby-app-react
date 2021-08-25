@@ -40,18 +40,91 @@ const salaryRangesList = [
   },
 ]
 
-const FilterGroup = () => {
-  console.log()
+const FilterGroup = props => {
+  const {
+    filtersValue,
+    changeEmploymentType,
+    changeSalaryRange,
+    changeSearchQuery,
+  } = props
+  const {employmentType, salaryRange, search} = filtersValue
+
+  const getEmploymentTypeFilterList = item => {
+    const updateEmpType = () => {
+      changeEmploymentType(item.employmentTypeId)
+    }
+
+    return (
+      <li key={item.employmentTypeId} className="optionItem">
+        <input
+          type="checkbox"
+          id={item.employmentTypeId}
+          value={employmentType}
+          onChange={updateEmpType}
+          className="checkbox"
+        />
+        <label htmlFor={item.employmentTypeId} className="optionLabel">
+          {item.label}
+        </label>
+      </li>
+    )
+  }
+
+  const getSalaryRangeFilterList = item => {
+    const updateSalaryRange = () => {
+      changeSalaryRange(item.salaryRangeId)
+    }
+
+    return (
+      <li key={item.salaryRangeId} className="optionItem">
+        <input
+          type="radio"
+          name="radioGroup"
+          id={item.salaryRangeId}
+          onChange={updateSalaryRange}
+          value={salaryRange}
+          className="checkbox"
+        />
+        <label htmlFor={item.salaryRangeId} className="optionLabel">
+          {item.label}
+        </label>
+      </li>
+    )
+  }
+
+  const updateSearchQuery = event => {
+    changeSearchQuery(event)
+  }
 
   return (
     <div className="filters-group-container">
       <div className="search-container-mobile">
-        <input type="search" className="search-input" placeholder="Search" />
+        <input
+          type="search"
+          className="search-input"
+          onChange={updateSearchQuery}
+          value={search}
+          placeholder="Search"
+        />
         <div className="search-icon-div">
           <BsSearch className="search-icon" />
         </div>
       </div>
       <ProfileCard />
+      <hr />
+      <div className="filterDiv">
+        <p className="filterType">Type of Employment</p>
+        <ul className="filterList">
+          {employmentTypesList.map(item => getEmploymentTypeFilterList(item))}
+        </ul>
+      </div>
+      <hr />
+      <div className="filterDiv">
+        <p className="filterType">Salary Range</p>
+        <ul className="filterList">
+          {salaryRangesList.map(item => getSalaryRangeFilterList(item))}
+        </ul>
+      </div>
     </div>
   )
 }

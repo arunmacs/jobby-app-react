@@ -8,7 +8,7 @@
 @media (min-width: 768px) {
   .filters-group-container {
     padding: 5px;
-    max-width: 400px;
+    max-width: 300px;
   }
 }
 
@@ -55,4 +55,45 @@
   color: #ffffff;
   font-size: 20px;
   width: 70px;
+}
+
+hr {
+  width: 90%;
+  margin: 10px 0px;
+}
+
+.filterDiv {
+  width: 100%;
+}
+
+.filterType {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 15px 15px;
+}
+
+.filterList {
+  padding: 0px;
+  margin: 10px 0px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.optionItem {
+  list-style-type: none;
+  margin: 5px;
+}
+
+.checkbox {
+  height: 15px;
+  width: 15px;
+}
+
+.optionLabel {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0px 10px;
 }
