@@ -148,7 +148,7 @@ class Jobs extends Component {
         />
         <h1 className="failure-heading">No Jobs Found</h1>
         <p className="failure-caption">
-          We could not find any jobs. Try other filters.
+          We could not find any jobs. Try other filters
         </p>
       </div>
     )

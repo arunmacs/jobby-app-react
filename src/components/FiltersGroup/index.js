@@ -116,14 +116,14 @@ const FilterGroup = props => {
       <ProfileCard />
       <hr />
       <div className="filterDiv">
-        <p className="filterType">Type of Employment</p>
+        <h1 className="filterType">Type of Employment</h1>
         <ul className="filterList">
           {employmentTypesList.map(item => getEmploymentTypeFilterList(item))}
         </ul>
       </div>
       <hr />
       <div className="filterDiv">
-        <p className="filterType">Salary Range</p>
+        <h1 className="filterType">Salary Range</h1>
         <ul className="filterList">
           {salaryRangesList.map(item => getSalaryRangeFilterList(item))}
         </ul>

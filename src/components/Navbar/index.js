@@ -20,35 +20,41 @@ const Navbar = props => {
   }
 
   const renderNavbarMobile = () => (
-    <div className="nav-links-mobile">
-      <Link to="/">
-        <AiFillHome className="nav-icon" />
-      </Link>
-      <Link to="/jobs">
-        <BsFillBriefcaseFill className="nav-icon" />
-      </Link>
-      <button type="button" onClick={logOutSession} className="logout-icon">
-        <FiLogOut className="nav-icon" />
-      </button>
-    </div>
+    <ul className="nav-links-mobile">
+      <li>
+        <Link to="/">
+          <AiFillHome className="nav-icon" />
+        </Link>
+      </li>
+      <li>
+        <Link to="/jobs">
+          <BsFillBriefcaseFill className="nav-icon" />
+        </Link>
+      </li>
+      <li>
+        <button type="button" onClick={logOutSession} className="logout-icon">
+          <FiLogOut className="nav-icon" />
+        </button>
+      </li>
+    </ul>
   )
 
   const renderNavbarDesktop = () => (
-    <div className="nav-links-desktop">
-      <div className="nav-links">
+    <ul className="nav-links-desktop">
+      <li className="nav-links">
         <Link to="/" className="nav-link">
           Home
         </Link>
         <Link to="/jobs" className="nav-link">
           Jobs
         </Link>
-      </div>
-      <div>
+      </li>
+      <li>
         <button type="button" onClick={logOutSession} className="logout-btn">
           Logout
         </button>
-      </div>
-    </div>
+      </li>
+    </ul>
   )
 
   return (
@@ -56,7 +62,7 @@ const Navbar = props => {
       <button type="button" onClick={navigateToHome} className="logo-btn">
         <img
           src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-          alt="website-logo"
+          alt="website logo"
           className="navbar-website-logo"
         />
       </button>

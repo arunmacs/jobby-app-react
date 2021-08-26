@@ -28,7 +28,7 @@ const JobItemCard = props => {
             className="company-logo"
           />
           <div className="job-title-rating-div">
-            <p className="job-title">{title}</p>
+            <h1 className="job-title">{title}</h1>
             <div className="rating-div">
               <BsFillStarFill className="star-icon" />
               <p className="rating">{rating}</p>

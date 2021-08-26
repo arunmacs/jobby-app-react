@@ -97,7 +97,7 @@ class JobItemDetails extends Component {
 
     return (
       <li className="skill-item" key={name}>
-        <img src={imageUrl} alt="name" className="skill-img" />
+        <img src={imageUrl} alt={name} className="skill-img" />
         <p className="skill-name">{name}</p>
       </li>
     )
@@ -124,11 +124,11 @@ class JobItemDetails extends Component {
         <div className="job-details-company-logo-title-div">
           <img
             src={companyLogoUrl}
-            alt="job details company logo"
+            alt="website logo"
             className="job-details-company-logo"
           />
           <div className="job-details-job-title-rating-div">
-            <p className="job-details-title">{title}</p>
+            <h1 className="job-details-title">{title}</h1>
             <div className="job-details-rating-div">
               <BsFillStarFill className="job-details-star-icon" />
               <p className="job-details-rating">{rating}</p>
@@ -149,7 +149,7 @@ class JobItemDetails extends Component {
           <p className="job-details-package">{packagePerAnnum}</p>
         </div>
         <div className="description-company-website-link-div">
-          <p className="job-details-description-text">Description</p>
+          <h1 className="job-details-description-text">Description</h1>
           <a
             href={companyWebsiteUrl}
             className="external-link"
