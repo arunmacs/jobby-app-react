@@ -107,9 +107,9 @@ class LoginForm extends Component {
   render() {
     const token = Cookie.get('jwt_token')
 
-    // if (token) {
-    //   return <Redirect to="/" />
-    // }
+    if (token) {
+      return <Redirect to="/" />
+    }
     return <div className="main-container">{this.renderForm()}</div>
   }
 }

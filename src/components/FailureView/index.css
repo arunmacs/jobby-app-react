@@ -1,0 +1,42 @@
+.failure-view-div {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.failure-view-img {
+  margin: 10px 0px;
+  width: 350px;
+}
+
+.failure-heading {
+  margin: 20px 0px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.failure-caption {
+  margin: 15px 0px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.retry-btn {
+  background-color: #6163ee;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  cursor: pointer;
+  width: 90px;
+  margin: 10px 0px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+}

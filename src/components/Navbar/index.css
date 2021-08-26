@@ -19,6 +19,13 @@
   align-items: center;
 }
 
+.logo-btn {
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+
 .logout-icon {
   outline: none;
   cursor: pointer;

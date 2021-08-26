@@ -1,11 +1,23 @@
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
+import Cookie from 'js-cookie'
 import {AiFillHome} from 'react-icons/ai'
 import {BsFillBriefcaseFill} from 'react-icons/bs'
 import {FiLogOut} from 'react-icons/fi'
 import './index.css'
 
-const Navbar = () => {
+const Navbar = props => {
   console.log()
+
+  const logOutSession = () => {
+    const {history} = props
+    Cookie.remove('jwt_token')
+    history.replace('/login')
+  }
+
+  const navigateToHome = () => {
+    const {history} = props
+    history.push('/')
+  }
 
   const renderNavbarMobile = () => (
     <div className="nav-links-mobile">
@@ -15,7 +27,7 @@ const Navbar = () => {
       <Link to="/jobs">
         <BsFillBriefcaseFill className="nav-icon" />
       </Link>
-      <button type="button" className="logout-icon">
+      <button type="button" onClick={logOutSession} className="logout-icon">
         <FiLogOut className="nav-icon" />
       </button>
     </div>
@@ -32,7 +44,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div>
-        <button type="button" className="logout-btn">
+        <button type="button" onClick={logOutSession} className="logout-btn">
           Logout
         </button>
       </div>
@@ -41,15 +53,17 @@ const Navbar = () => {
 
   return (
     <nav className="navbar-container">
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-        alt="website-logo"
-        className="navbar-website-logo"
-      />
+      <button type="button" onClick={navigateToHome} className="logo-btn">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+          alt="website-logo"
+          className="navbar-website-logo"
+        />
+      </button>
       {renderNavbarMobile()}
       {renderNavbarDesktop()}
     </nav>
   )
 }
 
-export default Navbar
+export default withRouter(Navbar)

@@ -1,0 +1,25 @@
+.job-details-main-container {
+  background-color: #000000;
+  height: calc(100vh - 70px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.job-details-card-container {
+  background-color: var(--light-ashy-container-color);
+  border-radius: 8px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .job-details-main-container {
+    height: calc(100vh - 80px);
+  }
+
+  .job-details-card-container {
+    width: 90%;
+  }
+}

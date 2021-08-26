@@ -1,9 +1,8 @@
 import {Component} from 'react'
 import Cookie from 'js-cookie'
-import {Link} from 'react-router-dom'
-import Loader from 'react-loader-spinner'
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import {BsSearch} from 'react-icons/bs'
+import LoaderView from '../LoaderView'
+import FailureView from '../FailureView'
 import JobItemCard from '../JobItemCard'
 import Navbar from '../Navbar'
 import FilterGroup from '../FiltersGroup'
@@ -30,14 +29,21 @@ class Jobs extends Component {
     this.fetchJobsData()
   }
 
+  getJwtToken = () => {
+    const token = Cookie.get('jwt_token')
+    return token
+  }
+
   fetchJobsData = async () => {
     this.setState({apiStatus: apiCall.inProgress})
     const {employmentType, salaryRange, search} = this.state
     const employmentTypeValues = employmentType.join(',')
-    const token = Cookie.get('jwt_token')
+    const token = this.getJwtToken()
     // console.log(token)
 
     const apiUrl = `https://apis.ccbp.in/jobs?employment_type=${employmentTypeValues}&minimum_package=${salaryRange}&search=${search}`
+    // console.log(apiUrl)
+
     const options = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -60,7 +66,7 @@ class Jobs extends Component {
           rating: item.rating,
           title: item.title,
         }))
-        this.setState({jobsList: formattedData, apiStatus: apiCall.success})
+        this.setState({jobsList: formattedData, apiStatus: apiCall.failure})
         // console.log(data)
       } else {
         this.setState({apiStatus: apiCall.noData})
@@ -75,33 +81,60 @@ class Jobs extends Component {
     const isOptionChecked = employmentType.includes(id)
 
     if (isOptionChecked) {
-      this.setState(prevState => ({
-        employmentType: prevState.employmentType.filter(item => item !== id),
-      }))
+      this.setState(
+        prevState => ({
+          employmentType: prevState.employmentType.filter(item => item !== id),
+        }),
+        this.fetchJobsData,
+      )
     } else {
-      this.setState(prevState => ({
-        employmentType: [...prevState.employmentType, id],
-      }))
+      this.setState(
+        prevState => ({
+          employmentType: [...prevState.employmentType, id],
+        }),
+        this.fetchJobsData,
+      )
     }
   }
 
   changeSalaryRange = id => {
-    this.setState({salaryRange: id})
+    this.setState({salaryRange: id}, this.fetchJobsData)
   }
 
   changeSearchQuery = event => {
     this.setState({search: event.target.value})
   }
 
-  retryFetchingJobsData = () => {
+  retryFetching = () => {
     this.fetchJobsData()
   }
 
-  renderLoaderView = () => (
-    <div className="loader-container" testid="loader">
-      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
-    </div>
-  )
+  fetchFilteredJobs = () => {
+    this.fetchJobsData()
+  }
+
+  renderApiStatusView = () => {
+    const {apiStatus} = this.state
+
+    switch (apiStatus) {
+      case apiCall.inProgress:
+        return <LoaderView />
+      case apiCall.success:
+        return this.renderJobsListView()
+      case apiCall.noData:
+        return this.renderNoDataView()
+      case apiCall.failure:
+        return <FailureView retryFetching={this.retryFetching} />
+      default:
+        return null
+    }
+  }
+
+  //   renderLoaderView = () => (
+  //     <div className="loader-container" testid="loader">
+  //       <Loader type="ThreeDots" color="#ffffff" height="80" width="80" />
+  //     </div>
+  //   )
 
   renderNoDataView = () => {
     console.log()
@@ -121,30 +154,30 @@ class Jobs extends Component {
     )
   }
 
-  renderFailureView = () => {
-    console.log()
+  //   renderFailureView = () => {
+  //     console.log()
 
-    return (
-      <div className="failure-view-div">
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
-          alt="failure view"
-          className="failure-view-img"
-        />
-        <h1 className="failure-heading">Oops! Something Went Wrong</h1>
-        <p className="failure-caption">
-          We cannot seem to find the page you are looking for
-        </p>
-        <button
-          type="button"
-          onClick={this.retryFetchingJobsData}
-          className="retry-btn"
-        >
-          Retry
-        </button>
-      </div>
-    )
-  }
+  //     return (
+  //       <div className="failure-view-div">
+  //         <img
+  //           src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+  //           alt="failure view"
+  //           className="failure-view-img"
+  //         />
+  //         <h1 className="failure-heading">Oops! Something Went Wrong</h1>
+  //         <p className="failure-caption">
+  //           We cannot seem to find the page you are looking for
+  //         </p>
+  //         <button
+  //           type="button"
+  //           onClick={this.retryFetchingJobsData}
+  //           className="retry-btn"
+  //         >
+  //           Retry
+  //         </button>
+  //       </div>
+  //     )
+  //   }
 
   renderJobsListView = () => {
     const {jobsList} = this.state
@@ -156,23 +189,6 @@ class Jobs extends Component {
         ))}
       </>
     )
-  }
-
-  renderApiStatusView = () => {
-    const {apiStatus} = this.state
-
-    switch (apiStatus) {
-      case apiCall.inProgress:
-        return this.renderLoaderView()
-      case apiCall.success:
-        return this.renderJobsListView()
-      case apiCall.noData:
-        return this.renderNoDataView()
-      case apiCall.failure:
-        return this.renderFailureView()
-      default:
-        return null
-    }
   }
 
   render() {
@@ -196,12 +212,13 @@ class Jobs extends Component {
                 className="search-input"
                 value={search}
                 onChange={this.changeSearchQuery}
-                placeholder="Search"
+                placeholder="Search on Job Role"
               />
               <div className="search-icon-div">
                 <button
                   type="button"
                   className="search-btn"
+                  onClick={this.fetchFilteredJobs}
                   testid="searchButton"
                 >
                   <BsSearch className="search-icon" />

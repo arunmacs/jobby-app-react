@@ -87,15 +87,15 @@
   padding: 0px;
 }
 
-.loader-container {
+/* .loader-container {
   height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
-}
-
+} */
+/* 
 .failure-view-div {
   height: 600px;
   display: flex;
@@ -137,7 +137,7 @@
   padding: 8px 15px;
   border: none;
   border-radius: 5px;
-}
+} */
 
 @media (min-width: 768px) {
   .job-items-list-mobile {
@@ -152,7 +152,7 @@
   }
 
   .loader-container {
-    height: 500px;
+    height: 300px;
   }
 
   .failure-view-div {

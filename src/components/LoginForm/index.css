@@ -60,7 +60,7 @@
 }
 
 .input {
-  color: #727064;
+  color: #ffffff;
   font-size: 20px;
   font-weight: 400;
   height: 50px;
@@ -71,6 +71,10 @@
   background-color: transparent;
   outline: none;
   cursor: pointer;
+}
+
+input:placeholder {
+  color: #727064;
 }
 
 .submit-btn {
