@@ -66,7 +66,7 @@ class Jobs extends Component {
           rating: item.rating,
           title: item.title,
         }))
-        this.setState({jobsList: formattedData, apiStatus: apiCall.failure})
+        this.setState({jobsList: formattedData, apiStatus: apiCall.success})
         // console.log(data)
       } else {
         this.setState({apiStatus: apiCall.noData})
