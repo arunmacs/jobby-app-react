@@ -29,7 +29,7 @@ class LoginForm extends Component {
   submitForm = async event => {
     event.preventDefault()
     const {userName, password} = this.state
-    const userCreds = {userName, password}
+    const userCreds = {username: userName, password}
 
     const loginUrl = 'https://apis.ccbp.in/login'
     const options = {
@@ -37,11 +37,11 @@ class LoginForm extends Component {
       body: JSON.stringify(userCreds),
     }
 
-    console.log(loginUrl, options)
+    // console.log(loginUrl, options)
 
     const response = await fetch(loginUrl, options)
     const data = await response.json()
-    console.log(response)
+    // console.log(data)
 
     if (response.ok) {
       this.submitSuccess(data.jwt_token)

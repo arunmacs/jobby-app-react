@@ -48,6 +48,7 @@ const FilterGroup = props => {
     changeSearchQuery,
   } = props
   const {employmentType, salaryRange, search} = filtersValue
+  const employmentTypeValues = employmentType.join(',')
 
   const getEmploymentTypeFilterList = item => {
     const updateEmpType = () => {
@@ -59,7 +60,7 @@ const FilterGroup = props => {
         <input
           type="checkbox"
           id={item.employmentTypeId}
-          value={employmentType}
+          value={employmentTypeValues}
           onChange={updateEmpType}
           className="checkbox"
         />
@@ -107,7 +108,9 @@ const FilterGroup = props => {
           placeholder="Search"
         />
         <div className="search-icon-div">
-          <BsSearch className="search-icon" />
+          <button type="button" className="search-btn" testid="searchButton">
+            <BsSearch className="search-icon" />
+          </button>
         </div>
       </div>
       <ProfileCard />

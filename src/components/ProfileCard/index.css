@@ -34,10 +34,26 @@
 @media (min-width: 768px) {
   .profile-card-container {
     height: 180px;
-    width: 250px;
+    width: 270px;
+    padding: 20px;
     margin: 10px 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+  }
+
+  .user-name {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .user-role {
+    font-size: 18px;
+    font-weight: 500;
   }
 }

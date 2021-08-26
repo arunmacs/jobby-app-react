@@ -51,6 +51,13 @@
   align-items: center;
 }
 
+.search-btn {
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+
 .search-icon {
   color: #ffffff;
   font-size: 20px;

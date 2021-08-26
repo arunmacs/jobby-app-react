@@ -11,7 +11,7 @@ class ProfileCard extends Component {
       <div className="profile-card-container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/male-avatar-img.png"
-          alt="profile-avatar"
+          alt="profile"
           className="profile-pic"
         />
         <h1 className="user-name">Arun Muniganti</h1>
