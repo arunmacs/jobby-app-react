@@ -46,6 +46,8 @@ const FilterGroup = props => {
     changeEmploymentType,
     changeSalaryRange,
     changeSearchQuery,
+    fetchFilteredJobs,
+    enterSearch,
   } = props
   const {employmentType, salaryRange, search} = filtersValue
   const employmentTypeValues = employmentType.join(',')
@@ -97,6 +99,14 @@ const FilterGroup = props => {
     changeSearchQuery(event)
   }
 
+  const onClickFetchFilterData = () => {
+    fetchFilteredJobs()
+  }
+
+  const enterUpdateSearch = event => {
+    enterSearch(event)
+  }
+
   return (
     <div className="filters-group-container">
       <div className="search-container-mobile">
@@ -104,11 +114,17 @@ const FilterGroup = props => {
           type="search"
           className="search-input"
           onChange={updateSearchQuery}
+          onKeyDown={enterUpdateSearch}
           value={search}
           placeholder="Search"
         />
         <div className="search-icon-div">
-          <button type="button" className="search-btn" testid="searchButton">
+          <button
+            type="button"
+            onClick={onClickFetchFilterData}
+            className="search-btn"
+            testid="searchButton"
+          >
             <BsSearch className="search-icon" />
           </button>
         </div>

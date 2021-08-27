@@ -102,6 +102,8 @@ class Jobs extends Component {
   }
 
   changeSearchQuery = event => {
+    console.log(event.target.value, 'searchInput')
+
     this.setState({search: event.target.value})
   }
 
@@ -110,7 +112,17 @@ class Jobs extends Component {
   }
 
   fetchFilteredJobs = () => {
+    console.log('OnClickSearchBtn')
+
     this.fetchJobsData()
+  }
+
+  enterSearch = event => {
+    console.log(event.key, 'OnKeyDownSearchBtn')
+
+    if (event.key === 'Enter') {
+      this.fetchJobsData()
+    }
   }
 
   renderApiStatusView = () => {
@@ -130,12 +142,6 @@ class Jobs extends Component {
     }
   }
 
-  //   renderLoaderView = () => (
-  //     <div className="loader-container" testid="loader">
-  //       <Loader type="ThreeDots" color="#ffffff" height="80" width="80" />
-  //     </div>
-  //   )
-
   renderNoDataView = () => {
     console.log()
 
@@ -153,31 +159,6 @@ class Jobs extends Component {
       </div>
     )
   }
-
-  //   renderFailureView = () => {
-  //     console.log()
-
-  //     return (
-  //       <div className="failure-view-div">
-  //         <img
-  //           src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
-  //           alt="failure view"
-  //           className="failure-view-img"
-  //         />
-  //         <h1 className="failure-heading">Oops! Something Went Wrong</h1>
-  //         <p className="failure-caption">
-  //           We cannot seem to find the page you are looking for
-  //         </p>
-  //         <button
-  //           type="button"
-  //           onClick={this.retryFetchingJobsData}
-  //           className="retry-btn"
-  //         >
-  //           Retry
-  //         </button>
-  //       </div>
-  //     )
-  //   }
 
   renderJobsListView = () => {
     const {jobsList} = this.state
@@ -204,6 +185,8 @@ class Jobs extends Component {
             changeEmploymentType={this.changeEmploymentType}
             changeSalaryRange={this.changeSalaryRange}
             changeSearchQuery={this.changeSearchQuery}
+            fetchFilteredJobs={this.fetchFilteredJobs}
+            enterSearch={this.enterSearch}
           />
           <div className="jobs-list">
             <div className="search-container-desktop">
@@ -212,6 +195,7 @@ class Jobs extends Component {
                 className="search-input"
                 value={search}
                 onChange={this.changeSearchQuery}
+                onKeyDown={this.enterSearch}
                 placeholder="Search on Job Role"
               />
               <div className="search-icon-div">
