@@ -369,18 +369,6 @@
       "evaluation_result": "CORRECT"
     },
     {
-      "test_case_id": "RJSCPAW11J_TEST_115",
-      "evaluation_result": "CORRECT"
-    },
-    {
-      "test_case_id": "RJSCPAW11J_TEST_116",
-      "evaluation_result": "CORRECT"
-    },
-    {
-      "test_case_id": "RJSCPAW11J_TEST_117",
-      "evaluation_result": "CORRECT"
-    },
-    {
       "test_case_id": "RJSCPAW11J_TEST_93",
       "evaluation_result": "CORRECT"
     },
@@ -466,6 +454,18 @@
     },
     {
       "test_case_id": "RJSCPAW11J_TEST_114",
+      "evaluation_result": "CORRECT"
+    },
+    {
+      "test_case_id": "RJSCPAW11J_TEST_115",
+      "evaluation_result": "CORRECT"
+    },
+    {
+      "test_case_id": "RJSCPAW11J_TEST_116",
+      "evaluation_result": "CORRECT"
+    },
+    {
+      "test_case_id": "RJSCPAW11J_TEST_117",
       "evaluation_result": "CORRECT"
     }
   ]
